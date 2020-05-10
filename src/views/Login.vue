@@ -20,7 +20,6 @@ export default Vue.extend({
   },
   methods: {
     ...mapActions(["setApiKey"]),
-    
     login() {
       if (this.apiKey) {
         this.setApiKey(this.apiKey);

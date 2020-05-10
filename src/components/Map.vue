@@ -1,12 +1,10 @@
 <template>
-  <section>Display map here {{ coord }}</section>
+  <section>Display map here</section>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-
-@Component
-export default class Map extends Vue {
-  @Prop() private coord!: string[];
-}
+export default {
+  name: "Map",
+  props: ["map"]
+};
 </script>
