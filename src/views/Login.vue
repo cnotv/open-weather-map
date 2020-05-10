@@ -3,7 +3,7 @@
     <h1>Login</h1>
     <p>An API key is required to display the map.</p>
     <input type="text" v-model="apiKey" />
-    <button v-on:click="setApiKey(apiKey)">Add key</button>
+    <button v-on:click="login()">Add key</button>
   </div>
 </template>
 
@@ -19,7 +19,14 @@ export default Vue.extend({
     };
   },
   methods: {
-    ...mapActions(["setApiKey"])
+    ...mapActions(["setApiKey"]),
+    
+    login() {
+      if (this.apiKey) {
+        this.setApiKey(this.apiKey);
+        this.$router.push({ name: "Weather" });
+      }
+    }
   }
 });
 </script>
