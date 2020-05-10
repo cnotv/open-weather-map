@@ -1,16 +1,34 @@
 <template>
   <form>
-    <label>Country</label>
-    <input type="text">
     <label>City</label>
-    <input type="text">
+    <input required type="text" v-model="city" />
+
+    <label>Country</label>
+    <input required type="text" v-model="country" />
+
+    <button type="button" v-on:click="setLocation()">Show on map</button>
   </form>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { mapGetters, mapActions } from "vuex";
 
-@Component
-export default class City extends Vue {
-}
+export default {
+  name: "City",
+  data() {
+    return {
+      city: "",
+      country: ""
+    };
+  },
+  computed: {
+    ...mapGetters(["getApiKey"])
+  },
+  methods: {
+    ...mapActions(["setLocation"]),
+    loadMap() {
+      this.setLocation({ city: this.city, country: this.country });
+    }
+  }
+};
 </script>
