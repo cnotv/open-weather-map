@@ -1,5 +1,7 @@
 # open-weather-map
 
+Weather app based on [Open Weather Map API](http://openweathermap.org/API#weather) and Vue.js.
+
 ## Project setup
 ```
 yarn install
