@@ -6,7 +6,7 @@
     <label>Country</label>
     <input required type="text" v-model="country" />
 
-    <button type="button" v-on:click="setLocation()">Show on map</button>
+    <button type="button" v-on:click="loadMap()">Show on map</button>
   </form>
 </template>
 
@@ -27,7 +27,8 @@ export default {
   methods: {
     ...mapActions(["setLocation"]),
     loadMap() {
-      this.setLocation({ city: this.city, country: this.country });
+      const location: MapLocation = { city: this.city, country: this.country };
+      this.setLocation(location);
     }
   }
 };
