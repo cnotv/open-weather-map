@@ -3,4 +3,5 @@ interface ApiParams {
   q?: string,
   lat?: number,
   long?: number
+  units?: string,
 }

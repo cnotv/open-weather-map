@@ -6,6 +6,7 @@ interface Owm {
   visibility: number;
   wind:       OwmWind;
   rain:       OwmRain;
+  snow:       OwmSnow;
   clouds:     OwmClouds;
   dt:         number;
   sys:        OwmSys;
@@ -35,6 +36,12 @@ interface OwmMain {
 
 interface OwmRain {
   "1h": number;
+  "3h": number;
+}
+
+interface OwmSnow {
+  "1h": number;
+  "3h": number;
 }
 
 interface OwmSys {

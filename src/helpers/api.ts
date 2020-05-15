@@ -3,6 +3,7 @@ import { AxiosRequestConfig } from "axios";
 
 export default {
   async fetchMap(params: ApiParams): Promise<Owm> {
+    params.units = 'metric';
     const url = `http://api.openweathermap.org/data/2.5/weather`;
     const config: AxiosRequestConfig = { params };
 
