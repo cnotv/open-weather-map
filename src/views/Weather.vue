@@ -1,8 +1,8 @@
 <template>
   <section>
-    <City />
-    <Map v-if="map" />
-    <Error v-else />
+    <Location />
+    <Map v-if="getMap()" />
+    <ErrorMsg v-else />
   </section>
 </template>
 
@@ -10,18 +10,15 @@
 import { mapGetters, mapActions } from "vuex";
 
 import Map from "@/components/Map.vue";
-import City from "@/components/City.vue";
+import ErrorMsg from "@/components/ErrorMsg.vue";
+import Location from "@/components/Location.vue";
 
 export default {
   name: "Weather",
   components: {
     Map,
-    City
-  },
-  data() {
-    return {
-      map: ""
-    };
+    ErrorMsg,
+    Location
   },
   computed: {
     ...mapGetters(["getMap"])

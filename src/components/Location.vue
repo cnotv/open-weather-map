@@ -14,7 +14,7 @@
 import { mapGetters, mapActions } from "vuex";
 
 export default {
-  name: "City",
+  name: "Location",
   data() {
     return {
       city: "",

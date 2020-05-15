@@ -8,6 +8,6 @@
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class Error extends Vue {
+export default class ErrorMsg extends Vue {
 }
 </script>
