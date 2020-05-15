@@ -12,6 +12,6 @@ interface State {
   coords?: OwmCoord;
   data: MapData;
   location?: MapLocation,
-  map?: Owm
+  stats?: Owm
 }
 

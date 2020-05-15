@@ -7,7 +7,9 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     apiKey: "",
+    coords: undefined,
     data: {},
+    stats: undefined,
   },
 
   mutations: {
@@ -23,8 +25,8 @@ export default new Vuex.Store({
     SET_CACHE: (state: State, payload: { location: string; data: Owm }) => {
       state.data[payload.location] = payload.data;
     },
-    SET_MAP: (state: State, map: Owm) => {
-      state.map = map;
+    SET_STATS: (state: State, stats: Owm) => {
+      state.stats = stats;
     },
   },
 
@@ -41,7 +43,7 @@ export default new Vuex.Store({
       const cache = state.data[q];
 
       if (cache) {
-        commit("SET_MAP", cache);
+        commit("SET_STATS", cache);
         commit("SET_COORDS", cache.coord);
       } else {
         const params: ApiParams = {
@@ -49,7 +51,7 @@ export default new Vuex.Store({
           q,
         };
         const mapData = await api.fetchMap(params);
-        commit("SET_MAP", mapData);
+        commit("SET_STATS", mapData);
         commit("SET_COORDS", mapData.coord);
         commit("SET_CACHE", { location: location, data: mapData });
       }
@@ -63,20 +65,14 @@ export default new Vuex.Store({
         ...coords,
       };
       const mapData = await api.fetchMap(params);
-      commit("SET_MAP", mapData);
+      commit("SET_STATS", mapData);
     },
   },
 
   getters: {
-    getApiKey: (state: State) => {
-      return state.apiKey;
-    },
-    getCoords: (state: State) => {
-      return state.coords;
-    },
-    getMap: (state: State) => {
-      return state.map;
-    },
+    getApiKey: (state: State) => state.apiKey,
+    getCoords: (state: State) => state.coords,
+    getStats: (state: State) => state.stats,
   },
   modules: {},
 });

@@ -1,31 +1,32 @@
 <template>
   <section>
     <Location />
-    <Map v-if="getMap()" />
+    <Stats v-if="getStats" v-bind:stats="getStats" />
     <ErrorMsg v-else />
   </section>
 </template>
 
 <script lang="ts">
+import Vue from "vue";
 import { mapGetters, mapActions } from "vuex";
 
-import Map from "@/components/Map.vue";
+import Stats from "@/components/Stats.vue";
 import ErrorMsg from "@/components/ErrorMsg.vue";
 import Location from "@/components/Location.vue";
 
-export default {
+export default Vue.extend({
   name: "Weather",
   components: {
-    Map,
+    Stats,
     ErrorMsg,
     Location
   },
   computed: {
-    ...mapGetters(["getMap"])
+    ...mapGetters(["getStats"])
   },
   methods: {
     ...mapActions(["setCoords"]),
-    generateCoords() {
+    _generateCoords() {
       const randomCoor = (min: number, max: number): number => {
         min = Math.ceil(min);
         max = Math.floor(max);
@@ -40,8 +41,8 @@ export default {
   },
 
   created() {
-    const coords = this.generateCoords();
+    const coords = this._generateCoords();
     this.setCoords(coords);
   }
-};
+});
 </script>

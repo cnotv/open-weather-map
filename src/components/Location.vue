@@ -11,18 +11,16 @@
 </template>
 
 <script lang="ts">
-import { mapGetters, mapActions } from "vuex";
+import Vue from "vue";
+import { mapActions } from "vuex";
 
-export default {
+export default Vue.extend({
   name: "Location",
   data() {
     return {
       city: "",
       country: ""
     };
-  },
-  computed: {
-    ...mapGetters(["getApiKey"])
   },
   methods: {
     ...mapActions(["setLocation"]),
@@ -31,5 +29,5 @@ export default {
       this.setLocation(location);
     }
   }
-};
+});
 </script>
