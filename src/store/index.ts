@@ -52,8 +52,11 @@ export default new Vuex.Store({
         };
         const mapData = await api.fetchMap(params);
         commit("SET_STATS", mapData);
-        commit("SET_COORDS", mapData.coord);
-        commit("SET_CACHE", { location: location, data: mapData });
+
+        if (mapData) {
+          commit("SET_COORDS", mapData.coord);
+          commit("SET_CACHE", { location: location, data: mapData });
+        }
       }
     },
     async setCoords({ commit, state }, coords: OwmCoord) {
